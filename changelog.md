@@ -1,16 +1,12 @@
 # Changelog
 
-###Viperus Changelog
-Day #1 Changed app colors to be more eye soothing Removed useless settings 
-Day #2 updated to recent source with my custimizations 
-Day #3(current) Implemented dark theme for notifications Implemented disable switch for dark theme 
-Day #4 (to come) PULL REQEST!!!! also secret things i plan on working on hehehehe
-
-### v0.1.3:
+### Next version (v0.2.0):
 
 - Every double-tap fix makes it work on more devices
 - Dark and orange app theme
 - Turkish translation
+- New notification design
+- New status bar header design
 
 
 ### v0.1.2:

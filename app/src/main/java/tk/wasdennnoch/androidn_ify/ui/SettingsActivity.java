@@ -9,6 +9,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import java.io.File;
 
@@ -25,9 +28,21 @@ public class SettingsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bare_settings);
+        setContentView(R.layout.activity_settings);
+        //noinspection ConstantConditions
+        if (isActivated() && !isPrefsFileReadable()) {
+            findViewById(R.id.prefs_not_readable_warning).setVisibility(View.VISIBLE);
+        }
         if (savedInstanceState == null)
             getFragmentManager().beginTransaction().replace(R.id.fragment, new Fragment()).commit();
+    }
+
+    private boolean isActivated() {
+        return false;
+    }
+
+    private boolean isPrefsFileReadable() {
+        return true;
     }
 
 
@@ -39,6 +54,8 @@ public class SettingsActivity extends Activity {
             //noinspection deprecation
             getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
             addPreferencesFromResource(R.xml.preferences);
+            // SELinux test, see XposedHook
+            getPreferenceManager().getSharedPreferences().edit().putBoolean("can_read_prefs", true).commit();
         }
 
         @Override
@@ -60,6 +77,7 @@ public class SettingsActivity extends Activity {
             getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         }
 
+        @SuppressLint("SetWorldReadable")
         @Override
         public void onPause() {
             super.onPause();
@@ -91,6 +109,21 @@ public class SettingsActivity extends Activity {
             }
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.about) {
+            startActivity(new Intent(this, AboutActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
