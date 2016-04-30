@@ -5,16 +5,18 @@
 
     <string name="xposed_description">Функции Android N на устройствах Lollipop и Marshmallow!</string>
 
-	<string name="activity_about">О приложении</string>
+    <string name="activity_about">Об Android N-ify</string>
     <string name="about_author">Разработчик: \"MrWasdennnoch\"</string>
     <string name="about_version">Версия %1$s (%2$d)</string>
-	
+
 	<!-- prefs -->
-	<string name="prefs_file_not_readable">Xposed не может прочитать файл конфигурации, будут использованы стандартные значения. Это может быть связано с блокирующим режимом SELinux.</string>
+    <string name="prefs_file_not_readable">Xposed не может прочитать файл конфигурации, будут использованы стандартные значения. Это может быть связано с блокирующим режимом SELinux.</string>
 	
+    <string name="restart_systemui">Перезапустить SystemUI</string>
+    <string name="restart_broadcast_sent">Запрос на перезапуск отправлен</string>
     <string name="header_settings">Настройки</string>
     <string name="header_recents">Недавние</string>
-	<string name="header_notifications">Уведомления</string>
+    <string name="header_notifications">Уведомления</string>
     <string name="header_app">Приложение</string>
     
     <string name="enable_settings">Включить твики настроек</string>
@@ -26,6 +28,7 @@
 
     <string name="enable_notifications">Включить твики уведомлений</string>
     <string name="notifications_dark_theme_title">Тёмная тема уведомлений</string>
+    <string name="notifications_dark_theme">Тёмный фон уведомлений для пользователей с данным цветом слоёв</string> 
 
     <string name="hide_launcher_icon_title">Скрыть иконку приложения</string>
     <string name="hide_launcher_icon">Может потребоватся перезагрузка рабочего стола</string>

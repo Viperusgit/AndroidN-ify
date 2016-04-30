@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="350dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -16,7 +16,8 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:contentDescription="@null"
-            android:src="@drawable/ic_launcher_big"/>
+            android:src="@drawable/ic_launcher_big"
+            android:layout_gravity="top|center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,21 +31,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/about_author"/>
+            android:text="@string/about_author"
+            android:id="@+id/developer" />
+
+        <TextView
+            android:id="@+id/edition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/about_edition" />
 
         <TextView
             android:id="@+id/version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"/>
+            android:layout_marginTop="6dp"
+            android:text="@string/about_version"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_margin="35dp">
+        android:layout_width="382dp"
+        android:layout_height="43dp"
+        android:layout_margin="35dp"
+        android:layout_gravity="bottom|center">
 
         <ImageView
             android:id="@+id/github"

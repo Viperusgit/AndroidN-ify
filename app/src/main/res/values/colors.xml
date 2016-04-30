@@ -6,6 +6,7 @@
     <color name="colorPrimary">#FF272727</color>
     <color name="colorPrimaryDark">#FF263238</color>
     <color name="windowBackground">#FF272727</color>
+    <!-- /App theme -->
 
 
     <!-- Notifications / Status bar panel -->
