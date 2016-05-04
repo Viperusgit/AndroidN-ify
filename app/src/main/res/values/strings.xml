@@ -11,7 +11,7 @@
     <string name="about_author">Developed by MrWasdennnoch</string>
     <string name="about_version">Version 2.0b</string>
     <string name="about_edition">ViperusGit Edition</string>
-    <string name="about_snapshot">VG SnapShot 5</string>
+    <string name="about_snapshot">VG SnapShot 6</string>
 
     <!-- prefs -->
     <string name="prefs_file_not_readable">The preference file isn\'t readable by Xposed, default values will be used in hooks. This could be due to enforcing SELinux.</string>
