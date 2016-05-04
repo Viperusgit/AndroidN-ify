@@ -8,7 +8,7 @@
     <dimen name="right_layout_margin_right">12.0dp</dimen>
     <dimen name="right_icon_size">48.0dp</dimen>
     <dimen name="expand_indicator_padding">12.0dp</dimen>
-    
+
     <dimen name="emergency_calls_only_margin_top">8.0dp</dimen>
     <dimen name="emergency_calls_only_text_size">12.0sp</dimen>
 
@@ -41,4 +41,8 @@
     <dimen name="notification_max_height">280dp</dimen>
     <dimen name="notification_time_margin_start">1dp</dimen>
     <dimen name="notification_divider_margin_top">1dp</dimen>
+    <dimen name="notification_header_height_exclude_top">26dp</dimen>
+    <dimen name="notification_text_margin_end">56dp</dimen>
+    <dimen name="notification_actions_margin_top">16dp</dimen>
+    <color name="notification_action_list">#ffeeeeee</color>
 </resources>
