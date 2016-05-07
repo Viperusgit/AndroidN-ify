@@ -2,7 +2,7 @@
 <!--suppress AndroidUnknownAttribute -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory
+    <PreferenceScreen
         android:title="@string/header_settings">
 
         <SwitchPreference
@@ -11,16 +11,15 @@
             android:title="@string/enable_settings"/>
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:dependency="enable_settings_tweaks"
             android:key="fix_sound_notif_tile"
             android:summary="@string/fix_sound_notif_tile"
             android:title="@string/fix_sound_notif_tile_title"/>
+        </PreferenceScreen>
 
-    </PreferenceCategory>
 
-
-    <PreferenceCategory
+    <PreferenceScreen
         android:title="@string/header_recents">
 
         <SwitchPreference
@@ -29,7 +28,7 @@
             android:title="@string/enable_recents"/>
 		
 		<SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="enable_recents_double_tap"
             android:dependency="enable_recents_tweaks"
             android:title="@string/enable_recents_double_tap"/>
@@ -46,15 +45,15 @@
             android:title="@string/double_tap_speed_title"/>
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="enable_large_recents"
             android:dependency="enable_recents_tweaks"
             android:title="@string/enable_large_recents"/>
 
-    </PreferenceCategory>
+    </PreferenceScreen>
 
 
-    <PreferenceCategory
+    <PreferenceScreen
         android:title="@string/header_notifications">
 
         <SwitchPreference
@@ -71,30 +70,30 @@
             android:title="@string/notifications_dark_theme_title"/>
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:dependency="enable_notification_tweaks"
             android:key="notification_dismiss_button"
             android:summary="@string/notification_dismiss_button"
             android:title="@string/notification_dismiss_button_title"/>
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:dependency="enable_notification_tweaks"
             android:key="notification_allow_load_label_with_pm"
             android:summary="@string/notification_allow_load_label_with_pm"
             android:title="@string/notification_allow_load_label_with_pm_title"/>
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:dependency="enable_notification_tweaks"
             android:key="notification_full_width_volume"
             android:summary="@string/notification_full_width_volume"
             android:title="@string/notification_full_width_volume_title"/>
 
-    </PreferenceCategory>
+    </PreferenceScreen>
 
 
-    <PreferenceCategory
+    <PreferenceScreen
         android:title="@string/header_debug">
 
         <SwitchPreference
@@ -103,6 +102,6 @@
             android:summary="@string/debug_log"
             android:title="@string/debug_log_title"/>
 
-    </PreferenceCategory>
+    </PreferenceScreen>
 
 </PreferenceScreen>
