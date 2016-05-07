@@ -4,6 +4,7 @@
     <string name="xposed_description">Porta le funzionalità introdotte in Android N a Lollipop e Marshmallow!</string>
 
     <string name="restart_systemui">Riavvia SystemUI</string>
+    <string name="restart_systemui_message">Sei sicuro di voler riavviare la SystemUI?</string>
     <string name="restart_broadcast_sent">Inviata una richiesta per riavviare</string>
     <string name="activity_about">Informazioni Android N-ify</string>
     <string name="about_author">Sviluppato da \"MrWasdennnoch\"</string>
@@ -25,6 +26,7 @@
     <string name="double_tap_speed_title">Velocità doppio tap</string>
     
     <string name="enable_notifications">Abilita modifiche alle notifiche</string>
+    <string name="enable_notifications_summ">Dopo ogni cambio di queste opzioni riavvia la SystemUI</string>
     <string name="notifications_dark_theme_title">Tema notifiche scuro</string>
     <string name="notifications_dark_theme">Background delle notifiche scuro per utenti con specifici temi Layers.</string>
 
@@ -60,6 +62,16 @@
 
     <!-- RECENTS -->
     <string name="no_previous_recents">Nessuna app precedente</string>
+    <string name="enable_large_recents">Abilita grandi app recenti</string>
     <!-- /RECENTS -->
+    
+    <!-- NOTIFICATIONS -->
+    <string name="notification_allow_load_label_with_pm_title">Abilita il caricamento del nome dell\'applicazione con PackageManger</string>
+    <string name="notification_allow_load_label_with_pm">Potrebbe causare riduzioni di prestazioni</string>
+    <string name="notification_full_width_volume_title">Dialogo del volume per tutta la larghezza</string>
+    <string name="notification_full_width_volume">Rimuovi i limiti di larghezza del dialogo del volume per dispositivi con display grandi</string>
+    <string name="notification_dismiss_button_title">Cambia pulsante di rimozione</string>
+    <string name="notification_dismiss_button">Mostra \"CANCELLA TUTTO\" invece dell\'icona di rimozione</string>
+     <!-- /NOTIFICATIONS -->
 
 </resources>

@@ -2,8 +2,10 @@ package tk.wasdennnoch.androidn_ify.ui;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -122,14 +124,27 @@ public class SettingsActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.restart_systemui:
-                sendBroadcast(new Intent(ACTION_KILL_SYSTEMUI));
-                Toast.makeText(this, R.string.restart_broadcast_sent, Toast.LENGTH_SHORT).show();
+                showRestartSystemUIDialog();
                 return true;
             case R.id.about:
                 startActivity(new Intent(this, AboutActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showRestartSystemUIDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.restart_systemui)
+                .setMessage(R.string.restart_systemui_message)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendBroadcast(new Intent(ACTION_KILL_SYSTEMUI));
+                        Toast.makeText(SettingsActivity.this, R.string.restart_broadcast_sent, Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
     }
 
 }
