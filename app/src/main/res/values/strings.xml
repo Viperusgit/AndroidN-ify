@@ -13,17 +13,16 @@
     <string name="about_author">Developed by MrWasdennnoch</string>
     <string name="about_version">Version 2.0b</string>
     <string name="about_edition">ViperusGit Edition</string>
-    <string name="about_snapshot">VG SnapShot 8</string>
+    <string name="about_snapshot">VG SnapShot 9</string>
 
      <!-- prefs -->
-    <string name="prefs_file_not_readable">The preference file isn\'t readable by Xposed, default values will be used in hooks. This could be due to enforcing SELinux.</string>
-
+   
     <string name="header_settings">Settings App Tweaks</string>
     <string name="header_recents">Recents Tweaks</string>
     <string name="header_notifications">Notification Tweaks</string>
     <string name="header_debug">Debug</string>
 
-    <string name="enable_settings">Enable settings tweaks</string>
+    <string name="enable_settings">Enable settings app tweaks</string>
     <string name="fix_sound_notif_tile_title">Fix "Sound &amp; notification" tile</string>
     <string name="fix_sound_notif_tile">Some ROMs combine the Sounds- and Notifications tile. Enable to set the proper summary for this tile</string>
 
@@ -35,8 +34,6 @@
     <string name="notifications_dark_theme_title">Dark notification theme</string>
     <string name="notifications_dark_theme">Dark notification background for users of specific layers themes</string>
 
-    <string name="hide_launcher_icon_title">Hide launcher icon</string>
-    <string name="hide_launcher_icon">May require launcher restart</string>
     <string name="debug_log_title">Debug log</string>
     <string name="debug_log">Warning: Log-flooding</string>
     <!-- /prefs -->
@@ -71,6 +68,7 @@
     <!-- /RECENTS -->
 
     <!-- NOTIFICATIONS -->
+    <string name="notifications_change_style">Notifications with N style</string>
     <string name="notification_allow_load_label_with_pm_title">Allow loading application name with PackageManager</string>
     <string name="notification_allow_load_label_with_pm">May cause performance issues</string>
     <string name="notification_full_width_volume_title">Full width volume dialog</string>

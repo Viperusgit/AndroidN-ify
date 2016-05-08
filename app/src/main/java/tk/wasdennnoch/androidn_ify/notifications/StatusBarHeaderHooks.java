@@ -2,6 +2,7 @@ package tk.wasdennnoch.androidn_ify.notifications;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import android.os.Process;
 import android.util.TypedValue;
@@ -41,9 +42,6 @@ public class StatusBarHeaderHooks {
     private static final String CLASS_QS_PANEL = "com.android.systemui.qs.QSPanel";
     private static final String CLASS_DETAIL_ADAPTER = "com.android.systemui.qs.QSTile$DetailAdapter";
 
-    private static byte sSetExpansionErrorCount = 0;
-    private static boolean sLogSetExpansionError = true;
-
     private static TouchAnimator mAlarmTranslation;
     private static TouchAnimator mDateSizeAnimator;
     private static TouchAnimator mFirstHalfAnimator;
@@ -55,13 +53,8 @@ public class StatusBarHeaderHooks {
 
     private static View mSystemIconsSuperContainer;
     private static View mDateGroup;
-    private static View mClock;
-    private static TextView mTime;
-    private static TextView mAmPm;
     private static FrameLayout mMultiUserSwitch;
-    //private static ImageView mMultiUserAvatar;
     private static TextView mDateCollapsed;
-    //private static TextView mDateExpanded;
     private static View mSettingsButton;
     private static View mSettingsContainer;
     private static View mQsDetailHeader;
@@ -95,6 +88,9 @@ public class StatusBarHeaderHooks {
                 XposedHook.logE(TAG, "Couldn't change header background color", t);
             }
 
+            View mClock;
+            TextView mTime;
+            TextView mAmPm;
             try {
                 mSystemIconsSuperContainer = (View) XposedHelpers.getObjectField(param.thisObject, "mSystemIconsSuperContainer");
                 mDateGroup = (View) XposedHelpers.getObjectField(param.thisObject, "mDateGroup");
@@ -102,9 +98,7 @@ public class StatusBarHeaderHooks {
                 mTime = (TextView) XposedHelpers.getObjectField(param.thisObject, "mTime");
                 mAmPm = (TextView) XposedHelpers.getObjectField(param.thisObject, "mAmPm");
                 mMultiUserSwitch = (FrameLayout) XposedHelpers.getObjectField(param.thisObject, "mMultiUserSwitch");
-                //mMultiUserAvatar = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMultiUserAvatar");
                 mDateCollapsed = (TextView) XposedHelpers.getObjectField(param.thisObject, "mDateCollapsed");
-                //mDateExpanded = (TextView) XposedHelpers.getObjectField(param.thisObject, "mDateExpanded");
                 mSettingsButton = (View) XposedHelpers.getObjectField(param.thisObject, "mSettingsButton");
                 mQsDetailHeader = (View) XposedHelpers.getObjectField(param.thisObject, "mQsDetailHeader");
                 mQsDetailHeaderTitle = (TextView) XposedHelpers.getObjectField(param.thisObject, "mQsDetailHeaderTitle");
@@ -298,14 +292,7 @@ public class StatusBarHeaderHooks {
                 mHeaderQsPanel.setVisibility(f < 0.36F ? View.VISIBLE : View.INVISIBLE);
                 mExpandIndicator.setExpanded(f > 0.93F);
             } catch (Throwable t) {
-                // Prevent log spam
-                if (sLogSetExpansionError) {
-                    XposedHook.logE(TAG, "Error setting expansion values", t);
-                    sSetExpansionErrorCount++;
-                    if (sSetExpansionErrorCount > 5) {
-                        sLogSetExpansionError = false;
-                    }
-                }
+                XposedHook.logE(TAG, "Error setting expansion values", t);
             }
         }
     };
@@ -556,27 +543,23 @@ public class StatusBarHeaderHooks {
         }
     }
 
-    public static void hookResSystemui(XC_InitPackageResources.InitPackageResourcesParam resparam, XSharedPreferences prefs) {
+    public static void hookResSystemui(XC_InitPackageResources.InitPackageResourcesParam resparam, XSharedPreferences prefs, String modulePath) {
         try {
             if (prefs.getBoolean("enable_notification_tweaks", true)) {
 
-                XResources.DimensionReplacement zero = new XResources.DimensionReplacement(0, TypedValue.COMPLEX_UNIT_DIP);
-                XResources.DimensionReplacement headerHeight = new XResources.DimensionReplacement(80, TypedValue.COMPLEX_UNIT_DIP);
-                XResources.DimensionReplacement emergencyCallsOnlySize = new XResources.DimensionReplacement(12, TypedValue.COMPLEX_UNIT_SP);
-                XResources.DimensionReplacement dateTimeCollapsedSize = new XResources.DimensionReplacement(14, TypedValue.COMPLEX_UNIT_SP);
-                XResources.DimensionReplacement multiUserAvatarSize = new XResources.DimensionReplacement(24, TypedValue.COMPLEX_UNIT_DIP);
-                XResources.DimensionReplacement brightnessSliderPaddingTop= new  XResources.DimensionReplacement(-12,TypedValue.COMPLEX_UNIT_DIP);
+                XModuleResources modRes = XModuleResources.createInstance(modulePath, resparam.res);
 
+                XResources.DimensionReplacement zero = new XResources.DimensionReplacement(0, TypedValue.COMPLEX_UNIT_DIP);
 
                 resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "qs_peek_height", zero);
-                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "status_bar_header_height", headerHeight);
-                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "status_bar_header_height_expanded", headerHeight);
-                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "qs_emergency_calls_only_text_size", emergencyCallsOnlySize);
-                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "qs_date_collapsed_size", dateTimeCollapsedSize);
-                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "multi_user_avatar_collapsed_size", multiUserAvatarSize);
-                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "qs_brightness_padding_top", brightnessSliderPaddingTop);
+                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "status_bar_header_height", modRes.fwd(R.dimen.status_bar_header_height));
+                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "status_bar_header_height_expanded", modRes.fwd(R.dimen.status_bar_header_height));
+                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "qs_emergency_calls_only_text_size", modRes.fwd(R.dimen.emergency_calls_only_text_size));
+                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "qs_date_collapsed_size", modRes.fwd(R.dimen.date_time_collapsed_size));
+                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "multi_user_avatar_collapsed_size", modRes.fwd(R.dimen.multi_user_avatar_size));
+                resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "qs_brightness_padding_top", modRes.fwd(R.dimen.brightness_slider_padding_top));
                 try {
-                    resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "multi_user_avatar_expanded_size", multiUserAvatarSize);
+                    resparam.res.setReplacement(PACKAGE_SYSTEMUI, "dimen", "multi_user_avatar_expanded_size", modRes.fwd(R.dimen.multi_user_avatar_size));
                 } catch (Throwable ignore) {
                     // Not in LP
                 }
